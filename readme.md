@@ -1,7 +1,7 @@
 # Multi-Client Chat Application
 
 ## Overview
-This is a Rust-based client-server chat application that supports both broadcast and unicast messaging across multiple clients.
+# This is a multi-client chat application using Rust, Tokio, Serde, and Crossterm. Made for a school project by Hakan Avgın.
 
 ## Features
 - Supports N number of clients

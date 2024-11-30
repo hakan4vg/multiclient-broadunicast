@@ -45,14 +45,14 @@ chmod +x build.sh
 - Double-click `run.bat` OR
 - Open command prompt and run:
 ```bash
-cargo run --bin multiclient-broadunicast
+cargo run --bin multiclient_broadunicast
 ```
 
 #### Linux/macOS
 - Run `./run.sh` OR
 - Open terminal and run:
 ```bash
-cargo run --bin multiclient-broadunicast
+cargo run --bin multiclient_broadunicast
 ```
 
 ### Messaging

@@ -60,7 +60,7 @@ pub async fn run_client(username: String, port: u16) -> Result<(), Box<dyn std::
         read()?;
 
         // Send Mode
-        println!("Enter message type (B for Broadcast, U for Unicast):");
+        println!("Enter message type (b for Broadcast, u for Unicast):");
         let message_type = match read()? {
             Event::Key(key_event) => match key_event.code {
                 KeyCode::Char('b') | KeyCode::Char('B') => MessageTarget::Broadcast,

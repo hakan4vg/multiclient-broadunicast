@@ -1,22 +1,28 @@
-use clap::Parser;
-mod client;
-mod server;
-mod message;
-
-#[derive(Parser, Debug)]
-struct Args {
-    #[arg(short, long, default_value_t = 8080)]
-    port: u16,
-
-    #[arg(short, long)]
-    username: Option<String>,
-}
+use std::io::{self, Write};
+use multiclient_broadunicast::terminal_launcher::launch_terminal;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let args = Args::parse();
-    match args.username {
-        Some(username) => client::run_client(username, args.port).await,
-        None => server::run_server(args.port).await,
+    let _port = 8080; // Default port
+
+    // Prompt for number of clients
+    print!("Enter the number of clients to create: ");
+    io::stdout().flush()?;
+    let mut input = String::new();
+    io::stdin().read_line(&mut input)?;
+    let num_clients: u32 = input.trim().parse()?;
+
+    // Launch server first
+    launch_terminal("Chat Server", "./server")?;
+
+    // Wait for server to start
+    tokio::time::sleep(tokio::time::Duration::from_secs(1)).await;
+
+    // Launch clients
+    for i in 1..=num_clients {
+        launch_terminal(&format!("Chat Client {}", i), "./client")?;
+        tokio::time::sleep(tokio::time::Duration::from_millis(500)).await;
     }
+
+    Ok(())
 }

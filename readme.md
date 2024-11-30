@@ -2,6 +2,8 @@
 
 ## Overview
 # This is a multi-client chat application using Rust, Tokio, Serde, and Crossterm. Made for a school project by Hakan Avgın.
+# https://github.com/hakan4vg/multiclient-broadunicast
+
 
 ## Features
 - Supports N number of clients

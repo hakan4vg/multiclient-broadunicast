@@ -3,6 +3,7 @@ use tokio::io::{AsyncReadExt, AsyncWriteExt, BufReader};
 use tokio::sync::Mutex;
 use serde_json;
 use std::collections::HashMap;
+use std::process;
 use std::sync::Arc;
 use tokio::net::tcp::OwnedWriteHalf;
 
@@ -16,10 +17,11 @@ pub async fn run_server(port: u16) -> Result<(), Box<dyn std::error::Error>> {
     let clients: Arc<Mutex<HashMap<String, OwnedWriteHalf>>> = Arc::new(Mutex::new(HashMap::new()));
 
     loop {
-        let (socket, _) = listener.accept().await?;
+        let (socket, _addr) = listener.accept().await?;
         let clients_clone = Arc::clone(&clients);
 
-        // Split the socket first
+        let peer_addr = socket.peer_addr()?;
+
         let (read_half, write_half) = socket.into_split();
         let mut reader = BufReader::new(read_half);
 
@@ -32,7 +34,8 @@ pub async fn run_server(port: u16) -> Result<(), Box<dyn std::error::Error>> {
             };
             let username = String::from_utf8_lossy(&username_buffer[..username_len]).trim().to_string();
 
-            // Store client connection
+            println!("Client '{}' connected (Address: {}:{}, PID: {})", username, peer_addr.ip(), peer_addr.port(), process::id());
+
             {
                 let mut clients = clients_clone.lock().await;
                 clients.insert(username.clone(), write_half);

@@ -32,7 +32,7 @@ cargo build --release
 echo "Installing executables..."
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
-    install_dir="$HOME/Applications/multiclient-chat"
+    install_dir="$HOME/Applications/multiclient_chat"
 else
     # Linux
     install_dir="$HOME/.local/bin"
@@ -41,7 +41,7 @@ fi
 mkdir -p "$install_dir"
 
 # Copy the executables
-cp target/release/multiclient-broadunicast "$install_dir/"
+cp target/release/multiclient_broadunicast "$install_dir/"
 cp target/release/server "$install_dir/"
 cp target/release/client "$install_dir/"
 
@@ -56,4 +56,4 @@ fi
 
 echo "Installation complete!"
 echo "Please restart your terminal or run: source ~/.bashrc"
-echo "You can now run the chat system with: multiclient-broadunicast OR by running run.sh" 
+echo "You can now run the chat system with: multiclient_broadunicast on your terminal OR by running run.sh" 

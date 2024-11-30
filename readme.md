@@ -10,32 +10,52 @@ This is a Rust-based client-server chat application that supports both broadcast
 - Message delivery time calculation
 
 ## Requirements
-- Rust (latest stable version)
-- Cargo package manager
+- Windows, Linux, or macOS
+- Internet connection for initial setup
 
 ## Setup and Running
 
-### Installation
-1. Ensure Rust and Cargo are installed
-2. Clone the repository
-3. Navigate to the project directory
+### Automatic Installation
+#### Windows
+1. Download the repository
+2. Double-click `build.bat`
+   - This will automatically install Rust if needed
+   - Build the project
+   - Set up necessary paths
+
+#### Linux/macOS
+1. Download the repository
+2. Open terminal in project directory
+3. Make the build script executable:
+```bash
+chmod +x build.sh
+```
+4. Run the build script:
+```bash
+./build.sh
+```
 
 ### Running the Application
-1. Start the main program:
+#### Windows
+- Double-click `run.bat` OR
+- Open command prompt and run:
 ```bash
-cargo run
+cargo run --bin multiclient-broadunicast
 ```
-2. Enter the number of clients when prompted
-3. The application will automatically launch:
-   - One server terminal
-   - N client terminals
+
+#### Linux/macOS
+- Run `./run.sh` OR
+- Open terminal and run:
+```bash
+cargo run --bin multiclient-broadunicast
+```
 
 ### Messaging
 - In each client window:
   - Press any key to enter sender mode
   - Choose message type:
-    - 'B' for Broadcast (send to all clients)
-    - 'U' for Unicast (send to specific client)
+    - 'b' for Broadcast (send to all clients)
+    - 'u' for Unicast (send to specific client)
   - Enter message
   - Message delivery time will be displayed
 
@@ -44,6 +64,3 @@ cargo run
 - Tokio (async runtime)
 - Serde (serialization)
 - Crossterm (CLI interaction)
-
-## License
-[Your License Here]

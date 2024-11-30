@@ -15,6 +15,9 @@
 
 ## Setup and Running
 
+## It can either be downloaded from the releases section or built from source.
+
+
 ### Automatic Installation
 #### Windows
 1. Download the repository
